@@ -44,7 +44,7 @@ public class JiraServiceImplementation implements JiraService {
             try {
                 throw new EmptyFieldException("Please add your JIRA credentials to application properties");
             } catch (EmptyFieldException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
         }
 

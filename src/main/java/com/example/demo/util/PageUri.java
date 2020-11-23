@@ -35,6 +35,6 @@ public final class PageUri {
     public static final String DELETE_COMMENT = "/{issueKey}/comment/{commentId}";
     public static final String ADD_COMMENT = "/{issueKey}/comment";
     public static final String ISSUE_PATH = "rest/api/2/issue/";
-    public static final String EDIT = "/edit/{issueIdOrKey}";
+    public static final String EDIT = "/edit/{issueKey}";
     public static final String EDIT_ISSUE = "/rest/api/2/issue/";
 }

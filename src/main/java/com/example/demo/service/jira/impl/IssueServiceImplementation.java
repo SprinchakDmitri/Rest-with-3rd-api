@@ -59,7 +59,7 @@ public class IssueServiceImplementation implements IssuesService {
             return "You don't have permission to delete this issue";
         }
         catch (Exception  e) {
-            return "No Issue with ID " + id;
+            return e.getMessage();
         }
 
 
@@ -86,7 +86,7 @@ public class IssueServiceImplementation implements IssuesService {
             return "You don't have permission to delete this comment";
         }
         catch (Exception  e) {
-            return "No comment with ID " + commentId;
+            return e.getMessage();
         }
     }
 
@@ -99,20 +99,20 @@ public class IssueServiceImplementation implements IssuesService {
                     String.class);
             return "Added a comment to issue with key - " + issueKey;
         } catch (HttpClientErrorException clientErrorException) {
-            return "Something went wrong";
+            return clientErrorException.getMessage();
         }
     }
 
     @Override
-    public String editIssue(UpdateIssue updateIssue, String issueIdOrKey) {
+    public String editIssue(UpdateIssue updateIssue, String issueKey) {
         HttpEntity request = new HttpEntity(updateIssue, getHeader());
         try {
-            restTemplate.exchange(JIRA_BASE_URL + EDIT_ISSUE.concat(issueIdOrKey), HttpMethod.PUT,
+            restTemplate.exchange(JIRA_BASE_URL + EDIT_ISSUE.concat(issueKey), HttpMethod.PUT,
                     request,
                     String.class);
-            return "Issue with id(key) - " + issueIdOrKey + " was edited successfully";
+            return "Issue with id(key) - " + issueKey + " was edited successfully";
         } catch (HttpClientErrorException httpClientErrorException) {
-            return "Something went wrong";
+            return httpClientErrorException.getMessage();
         }
     }
 
